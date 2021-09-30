@@ -1,0 +1,83 @@
+$saldoAenvio = $row['saldo'] - $valor;
+
+        $salAaux[] = $row['saldo'];
+
+        $sql = "UPDATE usuario SET saldo='$saldoAenvio' WHERE id = '$iduser'";
+        $resul = $conexion->query($sql);
+        $datoAenvio = $resul->fetch_assoc();
+
+        if ($datoAenvio['saldo'] <> $salAaux[0]) {
+            echo "entro";
+        }
+
+
+$sql = "SELECT * FROM usuario WHERE (id = '$idA' OR username = '$userA')"; #OR id = '$idA'
+            $resul1 = $conexion->query($sql);
+            $info_envio = $resul1->fetch_assoc();
+
+            $saldo_envio = $info_envio['saldo'] + $valor;
+
+            $sal_aux[] = $info_envio['saldo'];
+
+            $sql = "UPDATE usuario SET saldo='$saldo_envio' WHERE (id = '$idA' OR username = '$userA')"; #OR id = '$idA'
+            $resul2 = $conexion->query($sql);
+            $dato_envio = $resul2->fetch_assoc();
+
+            if ($dato_envio['saldo'] <> $sal_aux[0]) {
+                echo "<script>
+                    alert('El Envio fue Exitosa')
+                    window.location = 'admin.php'
+                    </script>";
+            } else {
+                echo "<script>
+                    alert('El Envio No se realizo')
+                    window.location = 'enviar.php'
+                    </script>";
+            }
+
+
+/*
+        $sql = "SELECT * FROM usuario WHERE (id = '$idA' OR username = '$userA')"; #OR id = '$idA'
+        $resul = $conexion->query($sql);
+        $info_envio = $resul->fetch_assoc();
+
+        $saldo_envio = $info_envio['saldo'] + $valor;
+
+        $sal_aux[] = $info_envio['saldo'];
+
+        $sql = "UPDATE usuario SET saldo='$saldo_envio' WHERE (id = '$idA' OR username = '$userA')"; #OR id = '$idA'
+        $resul1 = $conexion->query($sql);
+        $dato_envio = $resul1->fetch_assoc();
+
+        if ($dato_envio['saldo'] <> $sal_aux[0]) {
+
+            $saldoAenvio = $row['saldo'] - $valor;
+
+            $salAaux[] = $row['saldo'];
+
+            $sql = "UPDATE usuario SET saldo='$saldoAenvio' WHERE id = '$iduser'";
+            $resul = $conexion->query($sql);
+            
+            $datoAenvio = $resul->fetch_assoc();
+
+            if ($datoAenvio['saldo'] <> $salAaux[0]) {
+                echo "<script>
+                    alert('El Envio fue Exitosa')
+                    window.location = 'admin.php'
+                    </script>";
+            } else {
+                $saldo_envio = $info_envio['saldo'] - $valor;
+                $sql = "UPDATE usuario SET saldo='$saldo_envio' WHERE (id = '$idA' OR username = '$userA')"; #OR id = '$idA'
+                $resul2 = $conexion->query($sql);
+                #$dato_envio = $resul1->fetch_assoc();
+                echo "<script>
+                    alert('El Envio No se realizo')
+                    window.location = 'admin.php'
+                    </script>";
+            }
+        } else {
+            echo "<script>
+            alert('Error al Intentar Recargar por favor intente de nuevo!!!')
+            window.location = 'enviar.php'
+            </script>";
+        }*/
